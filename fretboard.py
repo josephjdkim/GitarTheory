@@ -7,24 +7,26 @@ sharp = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
 flat = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab']
 
 def frets(scale):
-    if scale.lower() == 'sharp':
+    if scale == 'sharp':
         perm = np.random.permutation(sharp)
-    elif scale.lower() == 'flat':
+    elif scale == 'flat':
         perm = np.random.permutation(flat)
-    elif scale.lower() == 'both':
-        perm = np.random.permutation(flat+sharp)
-    elif scale.lower() == 'quit' or scale.lower() == 'q':
-        print()
-        return 99
+    elif scale == 'both':
+        perm = np.random.permutation(flat + sharp)
+    elif scale == 'quit':
+        return 0
     else:
         print('Please use the keywords "sharp", "flat", "both", or "quit".\n')
-        return 0
 
-    met = input("Would you like to use a metronome? (y/n): ")
-    while met.lower() != 'y' and met.lower() != 'n':
-        met = input("Would you like to use a metronome? (y/n): ")
+    # if user would like a metronome
+    print('Would you like to use a metronome? (y/n):')
+    met = input('>> ').lower()
+    while met != 'y' and met != 'n':
+        print('Would you like to use a metronome? (y/n):')
+        met = input('>> ').lower()
     if met == 'y':
-        bpm = int(input('BPM?: '))
+        print('BPM?:')
+        bpm = int(input('>> '))
 
     print()
     for n in perm:

@@ -5,40 +5,68 @@ import time
 key_Gs = ['G#', 'A#', 'C', 'C#', 'D#', 'F', 'G']
 key_Ab = ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']
 key_A = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-# below needs to be taken care of
-key_As = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_Bb = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_B = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_C = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_Cs = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_Db = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_D = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_Ds = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_Eb = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_E = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_F = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_Fs = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_Gb = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
-key_G = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']
+key_As = ['A#', 'C', 'D', 'D#', 'F', 'G', 'A']
+key_Bb = ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A']
+key_B = ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#']
+key_C = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+key_Cs = ['C#', 'D#', 'F', 'F#', 'G#', 'A#', 'C']
+key_Db = ['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C']
+key_D = ['D', 'E', 'F#', 'G', 'A', 'B', 'C#']
+key_Ds = ['D#', 'F', 'G', 'G#', 'A#', 'C', 'D']
+key_Eb = ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D']
+key_E = ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#']
+key_F = ['F', 'G', 'A', 'A#', 'C', 'D', 'E']
+key_Fs = ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'F']
+key_Gb = ['Gb', 'Ab', 'Bb', 'B', 'Db', 'Eb', 'F']
+key_G = ['G', 'A', 'B', 'C', 'D', 'E', 'F#']
 
 
-def frets(scale):
-    if scale.lower() == 'sharp':
-        perm = np.random.permutation(sharp)
-    elif scale.lower() == 'flat':
-        perm = np.random.permutation(flat)
-    elif scale.lower() == 'both':
-        perm = np.random.permutation(flat+sharp)
-    elif scale.lower() == 'quit' or scale.lower() == 'q':
+def keys(key):
+    # major keys (DJ KHALED)
+    key = key.lower()
+    if key == 'g#':
+        perm = key_Gs
+    elif key == 'ab':
+        perm = key_Ab
+    elif key == 'a':
+        perm = key_A
+    elif key == 'a#':
+        perm = key_As
+    elif key == 'bb':
+        perm = key_Bb
+    elif key == 'b':
+        perm = key_B
+    elif key == 'c':
+        perm = key_C
+    elif key == 'c#':
+        perm = key_Cs
+    elif key == 'db':
+        perm = key_Db
+    elif key == 'd':
+        perm = key_D
+    elif key == 'd#':
+        perm = key_Ds
+    elif key == 'eb':
+        perm = key_Eb
+    elif key == 'f':
+        perm = key_F
+    elif key == 'f#':
+        perm = key_Fs
+    elif key == 'gb':
+        perm = key_Gb
+    elif key == 'g':
+        perm = key_G
+
+    elif key == 'quit':
         print()
-        return 99
+        return 0
     else:
         print('Please use the keywords "sharp", "flat", "both", or "quit".\n')
-        return 0
 
-    met = input("Would you like to use a metronome? (y/n): ")
-    while met.lower() != 'y' and met.lower() != 'n':
-        met = input("Would you like to use a metronome? (y/n): ")
+    # if user would like a metronome
+    met = input("Would you like to use a metronome? (y/n): ").lower()
+    while met != 'y' and met != 'n':
+        met = input("Would you like to use a metronome? (y/n): ").lower()
     if met == 'y':
         bpm = int(input('BPM?: '))
 
@@ -51,7 +79,4 @@ def frets(scale):
     sys.stdout.flush()
     sys.stdout.write(' ') # clears final beat on std.out
 
-    print()
-
-def keys(scale):
     print()
