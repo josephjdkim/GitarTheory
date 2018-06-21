@@ -20,8 +20,8 @@ key_Fs = ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'F']
 key_Gb = ['Gb', 'Ab', 'Bb', 'B', 'Db', 'Eb', 'F']
 key_G = ['G', 'A', 'B', 'C', 'D', 'E', 'F#']
 
-
 def keys(key):
+    invalid_inp = 0
     # major keys (DJ KHALED)
     key = key.lower()
     if key == 'g#':
@@ -56,27 +56,23 @@ def keys(key):
         perm = key_Gb
     elif key == 'g':
         perm = key_G
-
-    elif key == 'quit':
-        print()
-        return 0
     else:
-        print('Please use the keywords "sharp", "flat", "both", or "quit".\n')
+        print('Please enter a key (like C, Ab, or G#)".')
+        invalid_inp = 1
 
-    # if user would like a metronome
-    met = input("Would you like to use a metronome? (y/n): ").lower()
-    while met != 'y' and met != 'n':
+    if not invalid_inp:
+        # if user would like a metronome
         met = input("Would you like to use a metronome? (y/n): ").lower()
-    if met == 'y':
-        bpm = int(input('BPM?: '))
-
-    print()
-    for n in perm:
-        print(n)
+        while met != 'y' and met != 'n':
+            met = input("Would you like to use a metronome? (y/n): ").lower()
         if met == 'y':
-            mt.metronome(bpm) # displays metronome if user asked for one
+            bpm = int(input('BPM?: '))
 
-    sys.stdout.flush()
-    sys.stdout.write(' ') # clears final beat on std.out
+        print()
+        for n in perm:
+            print(n)
+            if met == 'y':
+                mt.metronome(bpm) # displays metronome if user asked for one
 
-    print()
+        sys.stdout.flush()
+        sys.stdout.write(' ') # clears final beat on std.out

@@ -1,3 +1,4 @@
+import sys
 import chords as ch
 import keys as ke
 import fretboard as fb
@@ -30,6 +31,12 @@ def state_check(state):
     if state == 'scales_prompt':
         scales_prompt()
         return 0
+    if state == 'scales_keys':
+        scales_keys()
+        return 0
+    if state == 'scales_frets':
+        scales_frets()
+        return 0
 
 # help command takes state so that user can be returned to proper menu after
 def help(state):
@@ -56,7 +63,7 @@ def chords():
     elif user_inp == 'back':
         state = 'home'
     elif user_inp == 'quit':
-        return 0
+        sys.exit()
     elif ch.chord_comps(user_inp)[0] not in ch.notenum or ch.chord_comps(user_inp)[1] not in ch.quality:
         ch.incorrectinp()
     else:
@@ -69,23 +76,37 @@ def chords():
 def scales_keys():
     state = 'scales_keys'
     border()
+    print('// Main menu // Scales // Keys //')
     print('What major key would you like to look at?')
-    user_inp = input('>> ')
-    ke.keys(user_inp)
+    user_inp = input('>> ').lower()
+    if user_inp == 'quit':
+        sys.exit()
+    elif user_inp == 'back':
+        state = 'scales_prompt'
+    else:
+        ke.keys(user_inp)
+    state_check(state)
 
 # program goes here is user chooses 'frets' at scales menu
 def scales_frets():
     state = 'scales_frets'
     border()
+    print('// Main menu // Scales // Frets //')
     print('Would you like to look at sharps, flats, or both?')
     user_inp = input('>> ').lower()
-    fb.frets(user_inp)
+    if user_inp == 'quit':
+        sys.exit()
+    elif user_inp == 'back':
+        state = 'scales_prompt'
+    else:
+        fb.frets(user_inp)
+    state_check(state)
 
 # program goes here if user selects 'scales' at main menu
 def scales_prompt():
     state = 'scales_prompt'
     border()
-    print('Main menu: Scales:')
+    print('// Main menu // Scales //')
     print('Would you like to practice scales of certain keys, or '
         'would you like\nto practice memorizing the fretboard? (keys/frets)')
     
@@ -98,7 +119,7 @@ def scales_prompt():
     elif user_inp == 'back':
         state = 'home'
     elif user_inp == 'quit':
-        return 0
+        sys.exit()
     else:
         print('Invalid input. Choose "keys" or "frets".')
     state_check(state)
@@ -106,7 +127,7 @@ def scales_prompt():
 # main menu
 def home():
     border()
-    print('Main menu:')
+    print('// Main menu //')
     print('Would you like to practice scales or learn chords? (scales/chords)')
     user_inp = input('>> ').lower()
 
@@ -117,7 +138,7 @@ def home():
     elif user_inp == 'help':
         help('home')
     elif user_inp == 'quit':
-        return 0
+        sys.exit()
     else:
         print('Invalid input. Type "help" for a list of commands.')
         home()
