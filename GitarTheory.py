@@ -41,9 +41,13 @@ def state_check(state):
 # help command takes state so that user can be returned to proper menu after
 def help(state):
     print(''
+        'Universal:\n'
         '"help" lists commands.\n'
         '"back" returns you to the previous level of the program.'
         '')
+    if state == 'chords':
+        print('\nFrom CHORDS:')
+        ch.help()
     state_check(state)
 
 # chord construction/knowledge database
@@ -55,7 +59,7 @@ def chords():
     print('Enter a guitar chord to find out its construction.')
     user_inp = input('>> ')
     if user_inp == 'help':
-        help(chords)
+        help(state)
     elif user_inp == 'formatting':
         ch.formatting()
     elif user_inp == 'qualities':
@@ -79,10 +83,12 @@ def scales_keys():
     print('// Main menu // Scales // Keys //')
     print('What major key would you like to look at?')
     user_inp = input('>> ').lower()
-    if user_inp == 'quit':
-        sys.exit()
+    if user_inp == 'help':
+        help(state)
     elif user_inp == 'back':
         state = 'scales_prompt'
+    elif user_inp == 'quit':
+        sys.exit()
     else:
         ke.keys(user_inp)
     state_check(state)
@@ -94,10 +100,12 @@ def scales_frets():
     print('// Main menu // Scales // Frets //')
     print('Would you like to look at sharps, flats, or both?')
     user_inp = input('>> ').lower()
-    if user_inp == 'quit':
-        sys.exit()
+    if user_inp == 'help':
+        help(state)
     elif user_inp == 'back':
         state = 'scales_prompt'
+    elif user_inp == 'quit':
+        sys.exit()
     else:
         fb.frets(user_inp)
     state_check(state)
@@ -116,6 +124,8 @@ def scales_prompt():
         scales_keys()
     elif user_inp == 'frets':
         scales_frets()
+    elif user_inp == 'help':
+        help(state)
     elif user_inp == 'back':
         state = 'home'
     elif user_inp == 'quit':
@@ -126,6 +136,7 @@ def scales_prompt():
 
 # main menu
 def home():
+    state = 'home'
     border()
     print('// Main menu //')
     print('Would you like to practice scales or learn chords? (scales/chords)')
@@ -136,7 +147,7 @@ def home():
     elif user_inp == 'scales':
         scales_prompt()
     elif user_inp == 'help':
-        help('home')
+        help(state)
     elif user_inp == 'quit':
         sys.exit()
     else:

@@ -86,22 +86,23 @@ def chord_create(lstChordComps):
 	return finalchord, qualitytheo[lstChordComps[1]]
 
 def help():
-	print()
-	print("This is a guitar chord construction app!\n"
+	print(""
 		"Enter 'qualities' to see the library of qualities available.\n"
-		"Enter 'formatting' for help with formatting chords.")
+		"Enter 'formatting' for help with formatting chords."
+		"")
 
 def formatting():
-	print()
-	print("To find the construction of a chord, enter the chord with the root\n"
+	print(""
+		"To find the construction of a chord, enter the chord with the root\n"
 		"separated from the quality. For example, to find F7, enter 'F 7', the\n"
 		"F and 7 separated by a space. 'G aug' will return the construction of\n"
 		"G augmented. Both 'C' and 'C maj' will return the information for a\n"
-		"C major chord.")
+		"C major chord."
+		"")
 
 def qualitieshelp():
-	print()
-	print("QUALITY			INPUT\n"
+	print(""
+		"QUALITY			INPUT\n"
 		"Major			maj\n"
 		"Minor			m\n"
 		"Aug			aug, +\n"
@@ -124,7 +125,8 @@ def qualitieshelp():
 		"Seventh/9b		7(9b)\n"
 		"Diminished 7th		dim7\n"
 		"Major 11th		maj11\n"
-		"Add 9			add9")
+		"Add 9			add9"
+		"")
 
 def incorrectinp():
 	print()

@@ -23,6 +23,7 @@ key_G = ['G', 'A', 'B', 'C', 'D', 'E', 'F#']
 def keys(key):
     invalid_inp = 0
     # major keys (DJ KHALED)
+    # i need to make this a dictionary...
     key = key.lower()
     if key == 'g#':
         perm = key_Gs
@@ -62,11 +63,14 @@ def keys(key):
 
     if not invalid_inp:
         # if user would like a metronome
-        met = input("Would you like to use a metronome? (y/n): ").lower()
+        print('Would you like to use a metronome? (y/n):')
+        met = input('>> ').lower()
         while met != 'y' and met != 'n':
-            met = input("Would you like to use a metronome? (y/n): ").lower()
+            print('Would you like to use a metronome? (y/n):')
+            met = input('>> ').lower()
         if met == 'y':
-            bpm = int(input('BPM?: '))
+            print('BPM?:')
+            bpm = int(input('>> '))
 
         print()
         for n in perm:
